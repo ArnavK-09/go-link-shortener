@@ -1,8 +1,8 @@
 tasks:
   - name: zig
-    init: ./tools/update-tools.sh
+    init: ./update-tools.sh
     command:
-      export PATH=./tools/zig:$PATH
+      export PATH=./zig:$PATH
       && echo "{\"zig_exe_path\":\"$(pwd)/tools/zig/zig\"}" > ~/.config/zls.json
       && echo
       && echo workspace start - zig build run ...
