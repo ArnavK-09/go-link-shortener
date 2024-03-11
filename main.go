@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
 	"log"
-	"net/url"
 	"strings"
 )
 
@@ -23,7 +22,6 @@ type Link struct {
 func getLink(code string) string {
 	// Decode by base58 from string and output string
 	url := dongle.Decode.FromString(code).ByBase58().ToString()
-	fmt.Println(code, url)
 	return url
 }
 
@@ -55,13 +53,8 @@ func main() {
 	// GET /link/<id> Link info
 	app.Get("/:link", func(c *fiber.Ctx) error {
 		var code string = c.Params("link")
-		// if len(code) != LENGTH {
-		// 	return c.Render("404", fiber.Map{
-		// 		"Title": "This Link Isn't Valid....",
-		// 	})
-		// }
 		url := getLink(code)
-		return c.Redirect(url, fiber.StatusPermanentRedirect)
+		return c.Redirect(`//`+url, fiber.StatusPermanentRedirect)
 	})
 
 	// POST /link Add Link
